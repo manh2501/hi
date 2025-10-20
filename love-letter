@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thư Gửi Em 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg, #ffb6c1, #ffe4e1);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .envelope {
+      width: 320px;
+      height: 200px;
+      background: #fff0f5;
+      position: relative;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.5s;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    .flap {
+      width: 100%;
+      height: 100%;
+      background: #ffb6c1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      clip-path: polygon(0 0, 50% 50%, 100% 0);
+      transform-origin: top;
+      transition: transform 0.5s ease;
+    }
+
+    .letter {
+      position: absolute;
+      width: 90%;
+      height: 80%;
+      top: 10%;
+      left: 5%;
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transform: translateY(100%);
+      transition: transform 0.6s ease;
+    }
+
+    .open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .open .letter {
+      transform: translateY(0);
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff69b4;
+      font-size: 20px;
+      animation: fly 4s linear infinite;
+    }
+
+    @keyframes fly {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🎵 Nhạc nền -->
+  <audio autoplay loop>
+    <source src="love-song.mp3" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ phát nhạc.
+  </audio>
+
+  <h1>💌 Gửi cho em, người anh thương 💌</h1>
+
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="letter">
+      <p>Em à,</p>
+      <p>Anh chỉ muốn nói rằng mỗi ngày trôi qua, anh lại càng thương em nhiều hơn.  
+      Dù khoảng cách có xa, chỉ cần nghĩ đến em, mọi mệt mỏi đều tan biến.</p>
+      <p>💖 Yêu em thật nhiều 💖</p>
+      <p style="text-align:right;">– Anh –</p>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    envelope.addEventListener('click', () => {
+      envelope.classList.toggle('open');
+    });
+
+    // Hiệu ứng trái tim bay
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '💗';
+      document.body.appendChild(heart);
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = window.innerHeight + 'px';
+      heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
 
